@@ -81,13 +81,13 @@ openssl rand -base64 16
 
 ```bash
 # Start all services
-docker-compose up -d
+docker compose up -d
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # Check status
-docker-compose ps
+docker compose ps
 ```
 
 ### 5. Access n8n
@@ -126,24 +126,24 @@ LETSENCRYPT_EMAIL=your-email@example.com
 
 ```bash
 # Stop all services
-docker-compose down
+docker compose down
 
 # Restart specific service
-docker-compose restart n8n
+docker compose restart n8n
 
 # View logs
-docker-compose logs n8n
-docker-compose logs -f  # Follow logs
+docker compose logs n8n
+docker compose logs -f  # Follow logs
 
 # Update services
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 
 # Backup database
 docker exec -t postgres pg_dump -U n8n n8ndb > backup.sql
 
 # Access n8n container
-docker exec -it n8n /bin/bash
+docker compose exec n8n /bin/bash
 ```
 
 ## 🔒 Security Features
@@ -161,13 +161,13 @@ docker exec -it n8n /bin/bash
 
 ```bash
 # Check service health
-docker-compose ps
+docker compose ps
 
 # View resource usage
 docker stats
 
 # Check logs for errors
-docker-compose logs --tail=100
+docker compose logs --tail=100
 ```
 
 ### Health Checks
@@ -203,43 +203,43 @@ n8n data is automatically backed up to `./n8n/backup/` directory:
 
 ```bash
 # Check if services are running
-docker-compose ps
+docker compose ps
 
 # Check n8n logs
-docker-compose logs n8n
+docker compose logs n8n
 
 # Verify environment variables
-docker-compose exec n8n env | grep N8N_
+docker compose exec n8n env | grep N8N_
 ```
 
 **Database connection issues:**
 
 ```bash
 # Check PostgreSQL logs
-docker-compose logs postgres
+docker compose logs postgres
 
 # Test database connectivity
-docker-compose exec postgres pg_isready -U n8n -d n8ndb
+docker compose exec postgres pg_isready -U n8n -d n8ndb
 ```
 
 **SSL certificate issues:**
 
 ```bash
 # Check nginx-proxy logs
-docker-compose logs nginx-proxy
+docker compose logs nginx-proxy
 
 # Check acme-companion logs
-docker-compose logs acme-companion
+docker compose logs acme-companion
 ```
 
 ### Debug Mode
 
 ```bash
 # Start with debug logging
-docker-compose up  # Without -d flag
+docker compose up  # Without -d flag
 
 # Access container shell
-docker-compose exec n8n /bin/bash
+docker compose exec n8n /bin/bash
 ```
 
 ## 📈 Scaling
@@ -250,10 +250,10 @@ For development with additional services:
 
 ```bash
 # Create override file
-cp docker-compose.override.yml.example docker-compose.override.yml
+cp docker compose.override.yml.example docker compose.override.yml
 
 # Edit for development needs
-nano docker-compose.override.yml
+nano docker compose.override.yml
 ```
 
 ### Production Scaling
