@@ -64,7 +64,7 @@ services:
       - '5433:5432'
 
   n8n-import:
-    image: n8nio/n8n:latest
+    image: n8nio/n8n:1.109.2
     container_name: n8n-import
     restart: 'no'
     networks:
@@ -97,7 +97,7 @@ services:
         condition: service_healthy
 
   n8n:
-    image: n8nio/n8n:latest
+    image: n8nio/n8n:1.109.2
     container_name: n8n
     restart: unless-stopped
     networks:
